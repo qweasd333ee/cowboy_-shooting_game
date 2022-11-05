@@ -5,14 +5,67 @@
   background: black;
   overflow: hidden;
   position: relative;
-  cursor: url('../images/cursor.png') 50 50, auto;
+  cursor: url("../images/cursor2.png") 5 5, auto;
+}
+
+img {
+  height: 150px;
+  position: absolute;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 #gun {
   width: 200px;
   position: absolute;
-  bottom: 0px;
-  left: 445px;
+  top: 534px;
+  left: 650px;
   display: none;
 }
 
+#menu {
+  width: 400px;
+  height: 200px;
+  background: white;
+  position: absolute;
+  font-size: 30px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  /* 禁止反白 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#menu div {
+  padding: 35px 0;
+}
+
+#menu div:hover {
+  cursor: url("../images/cursor2.png") 5 5, auto;
+  background: #CCC;
+}
+
+#hint {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  top: 90%;
+  left: 50%;
+  font-size: 20px;
+  transform: translate(-50%, -50%);
+  animation: a1 1s infinite linear alternate;
+}
+
+/* 淡入淡出效果 */
+@keyframes a1 {
+  0% {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  100% {
+    color: rgba(255, 255, 255, 0);
+  }
+}

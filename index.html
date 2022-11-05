@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>西部牛仔</title>
   <link rel="stylesheet" href="./CSS/reset.css">
   <link rel="stylesheet" href="./CSS/style.css">
 </head>
@@ -14,24 +14,14 @@
   <div id="game">
     <img id="gun" src="./images/gun2.png">
   </div>
-  <script src="./jquery-3.6.1.min.js"></script>
-  <script>
-    // 手跟著滑鼠移動
-    $('#game').mousemove(function (event) {
-      const mouseX = event.pageX - $(this).offset().left
-      const mouseY = event.pageY - $(this).offset().top
-      $('#gun').css('left', `${mouseX}px`)
-      $('#gun').css('top', `${mouseY}px`)
-    })
-    
-    // 滑鼠離開遊玩區域手槍圖片消失
-    $('#game').mouseover(function () {
-      $('#gun').css('display', 'block')
-    })
-    $('#game').mouseout(function () {
-      $('#gun').css('display', 'none')
-    })
-  </script>
+  <div id="hint">"點擊"或是按"space"開始遊戲</div>
+  <div id="menu">
+    <div id="start">開始遊戲</div>
+    <div id="instruction">遊戲說明</div>
+  </div>
+
+  <script src="./js/jquery-3.6.1.min.js"></script>
+  <script src="./js/all.js"></script>
 </body>
 
 </html>
