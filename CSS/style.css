@@ -52,7 +52,7 @@ img {
 #hint {
   position: absolute;
   color: rgb(255, 255, 255);
-  top: 90%;
+  top: 78%;
   left: 50%;
   font-size: 20px;
   transform: translate(-50%, -50%);
