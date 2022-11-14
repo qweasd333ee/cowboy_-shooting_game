@@ -69,3 +69,8 @@ img {
     color: rgba(255, 255, 255, 0);
   }
 }
+
+#score {
+  display: none;
+  color: white;
+}
