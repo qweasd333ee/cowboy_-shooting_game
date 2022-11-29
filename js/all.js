@@ -1,10 +1,10 @@
-let score = 0
+score = 0
 // 手跟著滑鼠移動
 $('#game').mousemove(function (event) {
   const mouseX = event.pageX - $(this).offset().left
   const mouseY = event.pageY - $(this).offset().top
-  $('#gun').css('left', `${mouseX}px`)
-  $('#gun').css('top', `${mouseY}px`)
+  $('#gun').css('left', `${500 + (mouseX / 5)}px`)
+  $('#gun').css('top', `${400 + (mouseY / 5)}px`)
 })
 
 
@@ -24,9 +24,7 @@ $('#game').one('click', function () {
     $('#game').mouseout(function () {
       $('#gun').hide()
     })
-    $('p').show()
-    score = 0
-    $('#text-score').text(score)
+    $('#score').show()
     // 隨機出現牛仔
     const top = Math.round(Math.random() * 70) + '%'
     const left = Math.round(Math.random() * 70) + '%'
@@ -35,11 +33,10 @@ $('#game').one('click', function () {
   })
 })
 
-// 點到牛仔換圖片、加分
+// 點到牛仔換圖片
 $('#game').on('click', '.cowboy', function () {
   $(this).attr('src', './images/blood.png')
   $(this).removeClass('zombie').addClass('blood')
-  $(this).stop()
   score++
   $('#text-score').text(score)
 })
