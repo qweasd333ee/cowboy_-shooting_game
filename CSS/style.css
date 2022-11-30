@@ -1,11 +1,22 @@
+#home {
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  background: url('../images/bg2.png') no-repeat center/cover;
+  overflow: hidden;
+  position: relative;
+  cursor: url("../images/cursor2.png") 5 5, auto;
+}
+
 #game {
   width: 100%;
   height: 100vh;
   margin: auto;
-  background: black;
+  background: url('../images/bg2.png') no-repeat center/cover;
   overflow: hidden;
   position: relative;
-  cursor: url("../images/cursor2.png") 5 5, auto;
+  cursor: url("../images/cursor.png") 50 50, auto;
+  display: none;
 }
 
 img {
@@ -20,8 +31,8 @@ img {
   width: 367px;
   height: 429px;
   position: absolute;
-  top: 500px;
-  left: 400px;
+  top: 600px;
+  left: 800px;
   display: none;
 }
 
@@ -70,8 +81,25 @@ img {
     color: rgba(255, 255, 255, 0);
   }
 }
+#scoreBoard {
+  width: 20%;
+  height: 15%;
+  background: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}
 
 #score {
-  display: none;
+  display: flex;
+  flex-direction: column;
+}
+#score div {
+  color: white;
+  font-size: 2.5rem;
+}
+#timer {
+  font-size: 2.5rem;
   color: white;
 }

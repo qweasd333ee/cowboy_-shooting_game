@@ -11,15 +11,27 @@
 </head>
 
 <body>
+  <div id="home">
+    <div id="menu">
+      <div id="start">開始遊戲</div>
+      <div id="instruction">遊戲說明</div>
+    </div>
+    <div id="hint">"點擊"或是按"space"開始遊戲</div>
+  </div>
   <div id="game">
     <img id="gun" src="./images/gun2.png">
-    <p id="score">分數: <span id="text-score">0</span> 分</p>
+    <div id="scoreBoard">
+      <p id="score">
+        <div>分數</div>
+        <div id="text-score">0</div>
+        <div>分</div>
+      </p>
+      <p id="timer">
+        時間: <span id="text-time">0</span> 秒
+      </p>
+    </div>
   </div>
-  <div id="hint">"點擊"或是按"space"開始遊戲</div>
-  <div id="menu">
-    <div id="start">開始遊戲</div>
-    <div id="instruction">遊戲說明</div>
-  </div>
+
 
   <script src="./js/jquery-3.6.1.min.js"></script>
   <script src="./js/all.js"></script>
