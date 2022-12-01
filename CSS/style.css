@@ -34,6 +34,7 @@ img {
   top: 600px;
   left: 800px;
   display: none;
+  z-index: 10000;
 }
 
 #menu {
@@ -101,25 +102,31 @@ img {
 }
 
 #barrel {
-  width: 200px;
-  height: 260px;
   z-index: 1000;
   position: absolute;
 }
 
-.barrelPosition1 {
+.barrelStyle1 {
+  width: 300px;
+  height: 200px;
   bottom: 8%;
-  left: 20%;
+  left: 8%;
 }
-.barrelPosition2 {
+.barrelStyle2 {
+  width: 260px;
+  height: 260px;
   bottom: 8%;
-  left: 40%;
+  left: 35%;
 }
-.barrelPosition3 {
+.barrelStyle3 {
+  width: 500px;
+  height: 260px;
   bottom: 8%;
-  left: 60%;
+  left: 45%;
 }
-.barrelPosition4 {
+.barrelStyle4 {
+  width: 260px;
+  height: 260px;
   bottom: 8%;
   left: 80%;
 }

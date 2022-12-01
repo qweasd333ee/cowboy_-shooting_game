@@ -56,6 +56,46 @@ $('#start').click(function () {
       $('#game').append(cowboy5)
       move5(cowboy5)
     }
+    
+    // 時間到
+    if (countdown === 0) {
+      // 停止倒數
+      clearInterval(timer)
+      // 清空
+      $('#game img').remove()
+      // 重新啟用開始按鈕
+      $('#btn-start').attr('disabled', false)
+
+      if (score > highscore.score) {
+        Swal.fire({
+          icon: 'info',
+          title: '時間到',
+          text: `最高分，你得到 ${score} 分`,
+          inputPlaceholder: '請輸入名字',
+          input: 'text',
+          inputAttributes: {
+            required: true
+          },
+          validationMessage: '名稱必填',
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        }).then(result => {
+          highscore.score = score
+          highscore.name = result.value
+          $('#text-highscorename').text(highscore.name)
+          $('#text-highscore').text(highscore.score)
+
+          // localStorage.setItem('zombiegame', JSON.stringify(highscore))
+          localStorage.zombiegame = JSON.stringify(highscore)
+        })
+      } else {
+        Swal.fire({
+          icon: 'info',
+          title: '時間到',
+          text: `你得到 ${score} 分`
+        })
+      }
+    }
   }, 1000)
   })
 
