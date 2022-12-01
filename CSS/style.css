@@ -92,14 +92,34 @@ img {
 }
 
 #score {
-  display: flex;
-  flex-direction: column;
-}
-#score div {
   color: white;
   font-size: 2.5rem;
 }
 #timer {
   font-size: 2.5rem;
   color: white;
+}
+
+#barrel {
+  width: 200px;
+  height: 260px;
+  z-index: 1000;
+  position: absolute;
+}
+
+.barrelPosition1 {
+  bottom: 8%;
+  left: 20%;
+}
+.barrelPosition2 {
+  bottom: 8%;
+  left: 40%;
+}
+.barrelPosition3 {
+  bottom: 8%;
+  left: 60%;
+}
+.barrelPosition4 {
+  bottom: 8%;
+  left: 80%;
 }
