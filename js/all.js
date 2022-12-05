@@ -2,7 +2,9 @@ let timer = 0
 let countdown = 0
 let score = 0
 let heart = 0
-
+const highscore = localStorage.cowboygame ? JSON.parse(localStorage.cowboygame) : { name: '', score: 0 }
+$('#text-highscorename').text(highscore.name)
+$('#text-highscore').text(highscore.score)
 // 手跟著滑鼠移動
 $('#game').mousemove(function (event) {
   const mouseX = event.pageX - $(this).offset().left
@@ -13,26 +15,35 @@ $('#game').mousemove(function (event) {
 
 // 首頁
 $('#home').on('click', function () {
+  $('#title').hide()
   $('#hint').hide()
   $('#menu').fadeIn(1000)
 })
 
 // 滑鼠離開遊玩區域手槍圖片消失
-  $('#game').mouseover(function () {
-    $('#gun').show()
-  })
-  $('#game').mouseout(function () {
-    $('#gun').hide()
-  })
+$('#game').mouseover(function () {
+  $('#gun').show()
+})
+$('#game').mouseout(function () {
+  $('#gun').hide()
+})
+
+$('#instruction').click(function () {
+  $('#menu').fadeOut(1000)
+  $('#instructionText').fadeIn(1000)
+})
+
+$('#close1').click(function () {
+  $('#instructionText').fadeOut(1000)
+})
 
 // 開始遊戲
 $('#start').click(function () {
   $('#home').hide()
   $('#game').show()
-  
   // 隨機出現牛仔
   score = 0
-  countdown = 10
+  countdown = 60
   heart = 5
   timer = setInterval(function () {
     // 倒數
@@ -63,50 +74,100 @@ $('#start').click(function () {
       const beer1 = $(`<img src="./images/beer.png" class="show6 beer1" style="top: 73%; left: 21%">`)
       $('#game').append(beer1)
     } else if (random === 7 && $('.show7').length < 1) {
-      const beer2 = $(`<img src="./images/beer.png" class="show7 beer2" style="top: 61%; left: 42%">`)
+      const beer2 = $(`<img src="./images/beer.png" class="show7 beer2" style="top: 61%; left: 95%">`)
       $('#game').append(beer2)
     }
 
-    // // 時間到
-    // if (countdown === 0) {
-    //   // 停止倒數
-    //   clearInterval(timer)
-    //   // 清空
-    //   $('#game img').remove()
-    //   // 重新啟用開始按鈕
-    //   $('#btn-start').attr('disabled', false)
+    // 重製遊戲區、塔羅抽取區卡牌
+    const resetCowboy = () => {
+      $('.cowboy1').remove()
+      $('.cowboy2').remove()
+      $('.cowboy3').remove()
+      $('.cowboy4').remove()
+      $('.cowboy5').remove()
+      $('.beer1').remove()
+      $('.beer1').remove()
+    }
 
-    //   if (score > highscore.score) {
-    //     Swal.fire({
-    //       icon: 'info',
-    //       title: '時間到',
-    //       text: `最高分，你得到 ${score} 分`,
-    //       inputPlaceholder: '請輸入名字',
-    //       input: 'text',
-    //       inputAttributes: {
-    //         required: true
-    //       },
-    //       validationMessage: '名稱必填',
-    //       allowOutsideClick: false,
-    //       allowEscapeKey: false
-    //     }).then(result => {
-    //       highscore.score = score
-    //       highscore.name = result.value
-    //       $('#text-highscorename').text(highscore.name)
-    //       $('#text-highscore').text(highscore.score)
-
-    //       // localStorage.setItem('zombiegame', JSON.stringify(highscore))
-    //       localStorage.zombiegame = JSON.stringify(highscore)
-    //     })
-    //   } else {
-    //     Swal.fire({
-    //       icon: 'info',
-    //       title: '時間到',
-    //       text: `你得到 ${score} 分`
-    //     })
-    //   }
-    // }
-  }, 2000)
+    // 時間到
+    if (countdown === 0) {
+      resetCowboy()
+      // 停止倒數
+      clearInterval(timer)
+      if (score > highscore.score) {
+        Swal.fire({
+          icon: 'info',
+          title: '時間到！',
+          text: `恭喜獲得最高分，你得到 ${score} 分！`,
+          inputPlaceholder: '請輸入名字',
+          input: 'text',
+          inputAttributes: {
+            required: true
+          },
+          validationMessage: '名稱必填',
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        }).then(result1 => {
+          highscore.score = score
+          highscore.name = result1.value
+          $('#text-highscorename').text(highscore.name)
+          $('#text-highscore').text(highscore.score)
+          localStorage.cowboygame = JSON.stringify(highscore)
+          resetCowboy()
+          $('#game').hide()
+          $('#home').show()
+        })
+      } else {
+        Swal.fire({
+          icon: 'info',
+          title: '時間到！',
+          text: `你得到 ${score} 分`
+        }).then(function () {
+          resetCowboy()
+          $('#game').hide()
+          $('#home').show()
+        })
+      }
+    } else if (heart <= 0) {
+      resetCowboy()
+      // 停止倒數
+      clearInterval(timer)
+      if (score > highscore.score) {
+        Swal.fire({
+          icon: 'info',
+          title: '血量歸零，請注意自身血量！',
+          text: `恭喜獲得最高分，你得到 ${score} 分！`,
+          inputPlaceholder: '請輸入名字',
+          input: 'text',
+          inputAttributes: {
+            required: true
+          },
+          validationMessage: '名稱必填',
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        }).then(result2 => {
+          highscore.score = score
+          highscore.name = result2.value
+          $('#text-highscorename').text(highscore.name)
+          $('#text-highscore').text(highscore.score)
+          localStorage.cowboygame = JSON.stringify(highscore)
+          resetCowboy()
+          $('#game').hide()
+          $('#home').show()
+        })
+      } else {
+        Swal.fire({
+          icon: 'info',
+          title: '血量歸零，請注意自身血量！',
+          text: `你得到 ${score} 分`
+        }).then(function () {
+          resetCowboy()
+          $('#game').hide()
+          $('#home').show()
+        })
+      }
+    }
+  }, 1000)
 })
 
 // 移動
@@ -200,24 +261,24 @@ $('#game').on('click', '.cowboy4', function () {
   $('#text-score').text(score)
   $(this).stop()
   $(this).removeClass('show4').addClass('rotate2').fadeOut(1000)
-  
-  
+
+
 })
 $('#game').on('click', '.cowboy5', function () {
   score++
   $('#text-score').text(score)
   $(this).stop()
-  $(this).removeClass('show5').addClass('rotate2').fadeOut(1000) 
-  
+  $(this).removeClass('show5').addClass('rotate2').fadeOut(1000)
+
 })
 $('#game').on('click', '.beer1', function () {
-  heart+=3
-  $('#text-score').text(score)
+  heart += 3
+  $('#text-heart').text(heart)
   $(this).removeClass('show6').fadeOut(1000)
 })
 $('#game').on('click', '.beer2', function () {
-  heart+=3
-  $('#text-score').text(score)
+  heart += 3
+  $('#text-heart').text(heart)
   $(this).removeClass('show7').fadeOut(1000)
 })
 
