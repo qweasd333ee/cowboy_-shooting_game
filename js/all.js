@@ -74,7 +74,7 @@ $('#start').click(function () {
       const beer1 = $(`<img src="./images/beer.png" class="show6 beer1" style="top: 73%; left: 21%">`)
       $('#game').append(beer1)
     } else if (random === 7 && $('.show7').length < 1) {
-      const beer2 = $(`<img src="./images/beer.png" class="show7 beer2" style="top: 61%; left: 95%">`)
+      const beer2 = $(`<img src="./images/beer.png" class="show7 beer2" style="top: 65%; left: 81%">`)
       $('#game').append(beer2)
     }
 

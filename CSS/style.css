@@ -221,8 +221,8 @@ img {
 }
 
 #scoreBoard {
-  width: 50%;
-  height: 29%;
+  width: 35%;
+  height: 23%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -324,8 +324,9 @@ img {
   font-size: 1.2rem;
   text-align: left;
   background: url('../images/highscore.png') no-repeat center/cover;
-  
+
 }
+
 #hightscore div {
   margin-top: 20px;
   display: inline-block;
